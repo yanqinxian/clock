@@ -1,0 +1,132 @@
+html {
+    background: #f0f0f0; /* 淡灰色背景 */
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center; /* 水平和垂直居中 */
+}
+
+.clock {
+    width: 90vmin; /* 使用 vmin 单位实现自适应 */
+    height: 90vmin;
+    border: 15px solid #333; /* 深灰色边框 */
+    border-radius: 50%;
+    margin: 50px auto;
+    position: relative;
+    padding: 2rem;
+    box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    background: #fff; /* 白色表盘背景 */
+}
+
+.outer-clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: #fff; /* 确保表盘背景是白色 */
+}
+
+.outer-clock-face::after,
+.outer-clock-face::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: #666; /* 刻度颜色 */
+    z-index: 0;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}
+
+.outer-clock-face::after {
+    transform: rotate(90deg);
+}
+
+.marking {
+    width: 3px;
+    height: 100%;
+    background: #999; /* 细刻度颜色 */
+    position: absolute;
+    left: 50%;
+    margin-left: -1.5px;
+    top: 0;
+    z-index: 0;
+}
+
+.marking-one { transform: rotate(30deg); }
+.marking-two { transform: rotate(60deg); }
+.marking-three { transform: rotate(120deg); }
+.marking-four { transform: rotate(150deg); }
+
+.inner-clock-face {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: #fff; /* 内部表盘背景 */
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.hand {
+    width: 50%;
+    height: 6px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%; /* 设置旋转中心点在右侧末端 */
+    transform: rotate(90deg); /* 初始指向 12 点方向 */
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); /* 模拟指针跳动效果 */
+    border-radius: 3px; /* 圆角指针 */
+}
+
+.hour-hand {
+    width: 35%; /* 时针较短 */
+    left: 15%; /* 调整位置使其居中 */
+    height: 8px; /* 时针较粗 */
+    background: #333; /* 深灰色时针 */
+    z-index: 3;
+}
+
+.min-hand {
+    width: 45%; /* 分针长度 */
+    left: 5%; /* 调整位置使其居中 */
+    height: 6px; /* 分针粗细 */
+    background: #555; /* 中灰色分针 */
+    z-index: 4;
+}
+
+.second-hand {
+    width: 48%; /* 秒针最长 */
+    left: 2%; /* 调整位置使其居中 */
+    height: 2px; /* 秒针最细 */
+    background: #e74c3c; /* 红色秒针 */
+    z-index: 5;
+}
+
+.center-dot {
+    width: 12px;
+    height: 12px;
+    background: #c0392b; /* 中心点颜色 */
+    border: 2px solid #fff; /* 白色边框 */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6; /* 确保中心点在最上层 */
+}
